@@ -1,0 +1,25 @@
+{
+  "name": "git-pr-cli",
+  "version": "1.0.0",
+  "description": "Redox Take Home",
+  "main": "index.js",
+  "bin": {
+    "github-pr-cli": "./cli.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.26.1",
+    "cli-spinners": "^2.6.1",
+    "commander": "^9.2.0",
+    "dotenv": "^16.0.0",
+    "lokijs": "^1.5.12",
+    "moment": "^2.29.3",
+    "parse-link-header": "^2.0.0",
+    "ramda": "^0.28.0"
+  }
+}
