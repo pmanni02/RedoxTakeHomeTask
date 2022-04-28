@@ -72,8 +72,6 @@ cli
         `filter date range by timestamp type ("created", "updated", "closed") - MUST be used with -date option`
     )
     .action((options) => {
-        // console.log(options)
-        // console.log(cli.args)
         const { state, timestampType, date } = options;
         
         const validTypes = ["created", "updated", "closed"];

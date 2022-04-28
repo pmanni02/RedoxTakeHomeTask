@@ -82,7 +82,7 @@ async function requestData(queryModifier){
     const pages = await getPages(queryModifier);
     let opts = Object.assign({}, baseOpts);
     opts.url = R.concat(opts.url, queryModifier);
-    // console.log(opts)
+    
     // make calls to get pages
     for(let i=1; i<=pages; i++){
         opts.params.page = i;
@@ -137,8 +137,9 @@ const fetchPRs = async () => {
         year+=2
     }
 
+    console.log('requesting data...')
     R.forEach(async (queryStr) => {
-        console.log('requesting data...')
+        console.log('...')
         await requestData(queryStr);
     }, queryStrs);
 }
@@ -164,7 +165,7 @@ const getPRs = async (options) => {
                 const key = `${timestampType}_at_e`;
                 data = data.find({ [key]: { '$between': epoch } }); // [key] => string interpolation for obj key
             }
-            
+
             data = data.data({removeMeta: true})
             display(data, list);
         }else{
