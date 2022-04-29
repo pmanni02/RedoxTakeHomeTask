@@ -126,7 +126,9 @@ async function requestData(queryModifier){
 // Due to github request limits for the search api (1000 results per search), the requests
 //  are split by PR creation date. Each request returns < 1000 results
 const fetchPRs = async () => {
-    const firstPRYear = 2013; // fetch via api - will not change for ramda org
+    // year of first PR for Ramda Org 
+        // - fetch dynamically for use of when any GitHub Org
+    const firstPRYear = 2013; 
     const currentYear = parseInt(new Date().getFullYear());
     
     let queryStrs = []
@@ -163,7 +165,7 @@ const getPRs = async (options) => {
             if(date){
                 const epoch = R.map(date => new Date(date).valueOf(), date);
                 const key = `${timestampType}_at_e`;
-                data = data.find({ [key]: { '$between': epoch } }); // [key] => string interpolation for obj key
+                data = data.find({ [key]: { '$between': epoch } });
             }
 
             data = data.data({removeMeta: true})

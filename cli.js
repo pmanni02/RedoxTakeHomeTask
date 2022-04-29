@@ -6,11 +6,10 @@ const moment = require('moment');
 const { fetchPRs, getPRs, clearPRs } = require('./index');
 
 const isValidDateInput = (dates) => {
-    // initialize to true - any validation failures will stop checks
     let isValid = true;
     if(dates && dates.length == 2){
         dates.forEach(date => {            
-            // moment(date to check, format, strict parsing)
+            // validates date format with strict parsing
             const formatCheck = moment(date, 'M/D/YYYY', true);
             const validFormat = formatCheck.isValid();
 
@@ -22,9 +21,9 @@ const isValidDateInput = (dates) => {
     return isValid;
 }
 
-const validDateTimestampCombo = (state, timestampType) => {
+const validStateTimestampType = (state, timestampType) => {
     // valid combinations of state and timestamp type
-    // eg: an invalid combo is state=open, timestamp type = closed bc there will be no 
+    // eg: an invalid combo is state=open, timestamp type = closed. there will be no 
     //      closed timestamp on open PRs
     const validCombos = {
         'open': ['created', 'updated'],
@@ -89,7 +88,7 @@ cli
         } else if(timestampType && !validTypes.includes(timestampType)){
             console.log('Invalid timestamp type');
             console.log('Valid types - created, updated, closed')
-        } else if (state && timestampType && !validDateTimestampCombo(state, timestampType)){
+        } else if (state && timestampType && !validStateTimestampType(state, timestampType)){
             console.log('Invalid state and timestamp type combination - see examples');
         } else {
             // fetch date with valid input
